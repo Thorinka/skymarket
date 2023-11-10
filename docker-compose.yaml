@@ -6,9 +6,6 @@ services:
     env_file:
       - .env
     environment:
-      POSTGRES_PASSWORD: 123456
-      POSTGRES_USER: postgres
-      POSTGRES_DB: skymarket
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - ./postgres_data:/var/lib/postgresql/data/
@@ -26,7 +23,7 @@ services:
     env_file:
       - .env
     command: >
-      sh -c "python manage.py migrate && python manage.py runserver"
+      sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     ports:
       - '8000:8000'
     depends_on:
